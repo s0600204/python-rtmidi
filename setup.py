@@ -6,6 +6,7 @@ from __future__ import print_function
 
 import subprocess
 import sys
+import sysconfig
 
 from ctypes.util import find_library
 from os.path import dirname, exists, join
@@ -169,7 +170,8 @@ elif sys.platform.startswith('darwin'):
             '-framework', 'CoreMIDI',
             '-framework', 'CoreFoundation'])
 elif sys.platform.startswith('win'):
-    extra_compile_args.append('/EHsc')
+    if not sysconfig.get_platform().startswith('mingw'):
+        extra_compile_args.append('/EHsc')
 
     if winmm:
         define_macros.append(('__WINDOWS_MM__', None))
