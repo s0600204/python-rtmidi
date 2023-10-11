@@ -4,7 +4,7 @@ requires = [
     "cython",
     "wheel",
     "meson-python",
-    "ninja"
+    "ninja; sys_platform != 'win32'",
 ]
 
 [project]
